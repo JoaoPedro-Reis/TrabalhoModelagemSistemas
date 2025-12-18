@@ -11,9 +11,15 @@ namespace TrabalhoModelagemDeSistema.API.Controllers
     public class StokFlowController(IStokFlowService service) : ControllerBase
     {
         [HttpPost("PersisteTB/{proc}")]
-        public ActionResult Index([FromRoute] string proc, [FromBody] object body)
+        public ActionResult RegistraProcedure([FromRoute] string proc, [FromBody] object body)
         {
-            return View();
+            var retorno  = service.Negocios(proc, body);
+            return new ContentResult()
+            {
+                StatusCode = 200,
+                Content = retorno,
+                ContentType = "application/json"
+            };
         }
     }
 

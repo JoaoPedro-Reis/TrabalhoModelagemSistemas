@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace StokFlow.Service.Interface
 {
-    internal interface IStokFlowService
+    public interface IStokFlowService
     {
+        public string Negocios(string proc, object body);
     }
 }
