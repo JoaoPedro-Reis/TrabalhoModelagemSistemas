@@ -6,11 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrabalhoModelagemDeSistema.API", "TrabalhoModelagemDeSistema.API.csproj", "{604ECBFF-01C3-4EE3-AA57-DC1FCD1F8D55}"
 	ProjectSection(ProjectDependencies) = postProject
 		{8CD63FE1-52CB-4ADF-BF21-44F3B8B6EAED} = {8CD63FE1-52CB-4ADF-BF21-44F3B8B6EAED}
+		{E28D746F-2D2F-4DFB-B55C-02A80440CD0C} = {E28D746F-2D2F-4DFB-B55C-02A80440CD0C}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokFlow.Repository", "..\StokFlow.Repository\StokFlow.Repository.csproj", "{E28D746F-2D2F-4DFB-B55C-02A80440CD0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StokFlow.Repository", "..\StokFlow.Repository\StokFlow.Repository.csproj", "{E28D746F-2D2F-4DFB-B55C-02A80440CD0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StokFlow.Service", "..\StokFlow.Service\StokFlow.Service.csproj", "{8CD63FE1-52CB-4ADF-BF21-44F3B8B6EAED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StokFlow.Service", "..\StokFlow.Service\StokFlow.Service.csproj", "{8CD63FE1-52CB-4ADF-BF21-44F3B8B6EAED}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E28D746F-2D2F-4DFB-B55C-02A80440CD0C} = {E28D746F-2D2F-4DFB-B55C-02A80440CD0C}
 	EndProjectSection
