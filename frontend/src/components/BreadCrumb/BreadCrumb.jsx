@@ -1,7 +1,6 @@
 import "./BreadCrumb.css";
 import { useNavigate } from "react-router-dom";
 
-// eslint-disable-next-line react/prop-types
 const BreadCrumb = ({ dados = [] }) => {
   const navigate = useNavigate();
 
