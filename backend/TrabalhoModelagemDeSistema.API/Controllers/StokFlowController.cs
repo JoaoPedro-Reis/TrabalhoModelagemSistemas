@@ -10,8 +10,8 @@ namespace TrabalhoModelagemDeSistema.API.Controllers
     [ApiController]
     public class StokFlowController(IStokFlowService service) : ControllerBase
     {
-        [HttpPost("PersisteTB/{proc}")]
-        public ActionResult RegistraProcedure([FromRoute] string proc, [FromBody] object body)
+        [HttpPost("AcessaBD/{proc}")]
+        public ActionResult RegistraProcedure([FromRoute] string proc, [FromBody] object? body)
         {
             var retorno  = service.Negocios(proc, body);
             return new ContentResult()

@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddHttpContextAccessor();//fornece acesso ao httprequest
-//builder.Services.AddTransient<AuthMiddleware>();
+builder.Services.AddTransient<AuthMiddleware>();
 builder.Services.AddTransient<IStokFlowService, StokFlowService>();
 builder.Services.AddTransient<IStokFlowRepository, StokFlowRepository>();
 builder.Services.AddTransient<ILoginService, LoginService>();
@@ -28,4 +28,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+var porta = app.Configuration["Server:Port"];
+app.Run($"http://+:{porta}");

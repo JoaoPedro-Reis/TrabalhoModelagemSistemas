@@ -19,7 +19,7 @@ namespace StokFlow.Repository
             using SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
             connection.Open();
 
-            using SqlCommand command = new SqlCommand($"exec sp_verifica_dados_usuario_prova_jp @xml", connection);
+            using SqlCommand command = new SqlCommand($"exec sp_stokflow_verifica_dados_usuario @xml", connection);
             command.Parameters.AddWithValue("@xml", xml.InnerXml);
 
             using SqlDataReader reader = command.ExecuteReader();
