@@ -8,7 +8,7 @@ namespace StokFlow.Service
     public class StokFlowService(IStokFlowRepository repositorio) : IStokFlowService
     {
 
-        public string Negocios(string proc, object body)
+        public string Negocios(string proc, object? body)
         {
             XmlDocument xml = new XmlDocument();
             xml = JsonConvert.DeserializeXmlNode(body is null ? string.Empty : body.ToString(), "Parametros");

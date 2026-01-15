@@ -8,7 +8,7 @@ namespace StokFlow.Repository
     public class StokFlowRepository(IConfiguration configuration) : IStokFlowRepository
     {
         public string xmlRetorno = null;
-        public string ExecuteProcedure(string proc, XmlNode xml)
+        public string ExecuteProcedure(string proc, XmlNode? xml)
         {
             using SqlConnection connection = new SqlConnection(configuration.GetConnectionString("DefaultConnection"));
             connection.Open();
