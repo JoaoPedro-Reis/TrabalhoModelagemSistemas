@@ -67,7 +67,7 @@ const GerenciamentoProduto = () => {
     }
     try {
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_persistencia_prova_jp_produto",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_persistencia_produto",
         body: {
           NOME: dados.nome,
           DESCRICAO: dados.descricao,
@@ -97,7 +97,7 @@ const GerenciamentoProduto = () => {
     try {
       setFetchData([]);
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_consulta_prova_jp_produto",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_consulta_produto",
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
       });
@@ -125,7 +125,7 @@ const GerenciamentoProduto = () => {
     }
     try {
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_deletar_prova_jp_produto",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_deletar_produto",
         body: { ID_PRODUTO: dados.idProd },
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
@@ -148,7 +148,7 @@ const GerenciamentoProduto = () => {
     }
     try {
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_editar_prova_jp_produto",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_editar_produto",
         body: {
           ID_PRODUTO: dados.idProd,
           DESCRICAO: dados.descricao,

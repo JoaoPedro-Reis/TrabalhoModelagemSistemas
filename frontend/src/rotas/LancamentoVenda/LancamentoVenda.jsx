@@ -43,7 +43,7 @@ const LancamentoVenda = () => {
   const getProduto = async () => {
     try {
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_consulta_prova_jp_produto",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_consulta_produto",
         verb: "POST",
       });
       let linhas = result.Linhas?.Linha || [];
@@ -60,7 +60,7 @@ const LancamentoVenda = () => {
     try {
       setFetchData([]);
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_consulta_prova_jp_vendedor",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_consulta_vendedor",
         verb: "POST",
       });
       let linhas = result.Linhas?.Linha || [];
@@ -114,10 +114,9 @@ const LancamentoVenda = () => {
       setErrorMessage(validationError);
       return;
     }
-
     try {
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_persistencia_prova_jp_lancamento_venda",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_persistencia_venda",
         body: {
           ID_PRODUTO: dados.produto,
           ID_VENDEDOR: dados.vendedor,

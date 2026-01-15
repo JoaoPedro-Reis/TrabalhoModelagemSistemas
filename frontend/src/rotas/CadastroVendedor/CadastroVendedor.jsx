@@ -43,7 +43,7 @@ const CadastroVendedor = () => {
     }
     try {
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_persistencia_prova_jp_vendedor",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_persistencia_vendedor",
         body: { NOME: dados.nome, UF: dados.uf.toUpperCase(), CPF: dados.cpf },
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
@@ -68,7 +68,7 @@ const CadastroVendedor = () => {
     try {
       setFetchData([]);
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_consulta_prova_jp_vendedor",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_consulta_vendedor",
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
       });
