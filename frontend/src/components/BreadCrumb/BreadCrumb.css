@@ -1,0 +1,30 @@
+.breadcrumb {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 0 .5rem;
+  }
+  
+  .breadcrumb ol {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .breadcrumb li:not(:last-child)::after {
+    display: inline-block;
+    margin: 0 .25rem;
+    content: "/";
+    color: #062e52;
+  }
+  .breadcrumb li:not(:last-child){
+    color: #0382a8c7;
+  }
+  
+  .breadcrumb li a:hover {
+    color: #062e52;
+    text-decoration: underline;
+    cursor: pointer;
+  }
