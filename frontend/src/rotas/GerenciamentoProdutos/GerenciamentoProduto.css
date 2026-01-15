@@ -1,0 +1,18 @@
+input {
+  padding: 2vh;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.bts-table{
+  display: flex;
+  justify-content: center;
+}
+
+.bt-deletar{
+  background-color: red;
+}
+.bt-deletar:hover{
+  background-color: darkred;
+}
+  

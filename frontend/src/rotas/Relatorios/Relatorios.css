@@ -1,0 +1,20 @@
+.table-message {
+    display: block;
+    align-items: center;
+  }
+
+.table-component{
+    width: 80vw;
+}
+
+
+caption{
+    display: inline;
+}
+  
+.bt-route-relatory{
+    width: 15vw;
+    height: 15vh;
+}
+
+  

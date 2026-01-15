@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home/Home";
 import Menu from "./Menu/Menu";
-import GerenciamentoVendedor from "./Vendedor/GerenciamentoVendedor";
-import GerenciamentoProduto from "./Produtos/GerenciamentoProduto";
-import GerenciamentoVenda from "./Venda/GerenciamentoVenda";
+import CadastroVendedor from "./CadastroVendedor/CadastroVendedor";
+import GerenciamentoProduto from "./GerenciamentoProdutos/GerenciamentoProduto";
+import LancamentoVenda from "./LancamentoVenda/LancamentoVenda";
 import RelatoriosGerenciais from "./Relatorios/RelatoriosGerenciais";
 import RelatorioVendUf from "./Relatorios/RelatorioVendUf";
 import RelatorioAnalitico from "./Relatorios/RelatorioAnalitico";
@@ -14,17 +14,17 @@ const Rotas = () => {
   const routes = [
     { path: "/", element: <Home /> },
     { path: "/menu", element: <Menu /> },
-    { path: "/gerenciamento-vendedor", element: <GerenciamentoVendedor /> },
-    { path: "/gerenciamento-produto", element: <GerenciamentoProduto /> },
-    { path: "/gerenciamento-venda", element: <GerenciamentoVenda /> },
-    //{ path: "/relatorios-gerenciais", element: <RelatoriosGerenciais /> },
-    //{ path: "/relatorio-vendedores-por-uf", element: <RelatorioVendUf /> },
-    //{ path: "/relatorio-analitico-venda", element: <RelatorioAnalitico /> },
-    //{ path: "/relatorios-vendedor-por-qtd", element: <RelatorioVendQtd /> },
-    // {
-    //   path: "/relatorios-vendedor-por-valores",
-    //   element: <RelatorioVendValor />,
-    // },
+    { path: "/cadastro-vendedor", element: <CadastroVendedor /> },
+    { path: "/gerenciamento-produtos", element: <GerenciamentoProduto /> },
+    { path: "/lancamento-venda", element: <LancamentoVenda /> },
+    { path: "/relatorios-gerenciais", element: <RelatoriosGerenciais /> },
+    { path: "/relatorio-vendedores-por-uf", element: <RelatorioVendUf /> },
+    { path: "/relatorio-analitico-venda", element: <RelatorioAnalitico /> },
+    { path: "/relatorios-vendedor-por-qtd", element: <RelatorioVendQtd /> },
+    {
+      path: "/relatorios-vendedor-por-valores",
+      element: <RelatorioVendValor />,
+    },
   ];
 
   return (

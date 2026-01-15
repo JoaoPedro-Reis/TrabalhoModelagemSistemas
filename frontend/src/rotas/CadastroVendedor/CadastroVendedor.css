@@ -1,0 +1,56 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: first baseline;
+  width: auto;
+  margin: 50px;
+  background-color: lightslategray;
+  border-radius: 20px;
+  position: relative;
+}
+
+.cadastros {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.error-message,
+.success-message {
+  color: rgb(212, 38, 38);
+  text-align: center;
+}
+
+.success-message {
+  color: green;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 20vw;
+}
+
+button {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  width: 12vw;
+  height: 8vh;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  background-color: rgb(8, 8, 170);
+}
+
+.tabelaConsulta {
+  width: 50vw;
+}

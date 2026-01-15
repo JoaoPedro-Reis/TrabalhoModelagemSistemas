@@ -1,0 +1,39 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: darkslateblue;
+}
+
+.container-login {
+  display: grid;
+  width: 40vw; 
+  height: 90vh;
+  grid-template-columns: 1fr;
+  margin: 10px;
+  background-color: lightslategray;
+  border-radius: 20px;
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 50px;
+}
+
+.bt-login {
+  font-size: 1rem;
+  background-color: midnightblue;
+  border-radius: 5px;
+  width: 13vw;
+  height: 8vh;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(5, 5, 71);
+}
+
+
+

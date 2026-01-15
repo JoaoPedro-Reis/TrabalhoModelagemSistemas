@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: darkslateblue;
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
+  .button-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8vh;
+  }
+  
+  .bt-route {
+    font-size: 1rem;
+    background-color: midnightblue;
+    border-radius: 5px;
+    width: 18vw;
+    height: 18vh;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: rgb(5, 5, 71);
+  }
+  
+  
