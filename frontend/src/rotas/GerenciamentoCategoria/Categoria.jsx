@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "../../components/useFetch";
-import "./GerenciamentoProduto.css";
+import "../GerenciamentoProdutos/GerenciamentoProduto.css";
 import Table from "../../components/Table/Table";
 import Input from "../../components/Input/Input";
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
@@ -17,6 +17,10 @@ const Categoria = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [fetchData, setFetchData] = useState([]);
+
+  useEffect(() => {
+    handleConsulta();
+  }, []);
 
   const handleDadosChange = ({ target }) => {
     const { name, value } = target;
@@ -61,16 +65,18 @@ const Categoria = () => {
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
       });
-      if (result.Resposta.Status == 500) {
-        setErrorMessage("Não é possível cadastrar categorias com o mesmo nome");
-        return;
-      }
+      console.log("Resposta do cadastro:", result);
       setSuccessMessage("Cadastro realizado com sucesso!");
-      console.log(result);
-      setDados({});
+      setDados({
+        idCategoria: "",
+        nome: "",
+        descricao: "",
+        inativo: 0,
+      });
       await handleConsulta();
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.message || "Erro ao cadastrar categoria");
+      console.error("Erro ao cadastrar:", error);
     }
   };
 
@@ -115,7 +121,12 @@ const Categoria = () => {
       });
       setSuccessMessage("Deleção realizada com sucesso!");
       console.log(result);
-      setDados({});
+      setDados({
+        idCategoria: "",
+        nome: "",
+        descricao: "",
+        inativo: 0,
+      });
       await handleConsulta();
     } catch (error) {
       setErrorMessage(error.message);
@@ -143,7 +154,12 @@ const Categoria = () => {
       });
       setSuccessMessage("Edição realizada com sucesso!");
       console.log(result);
-      setDados({});
+      setDados({
+        idCategoria: "",
+        nome: "",
+        descricao: "",
+        inativo: 0,
+      });
       await handleConsulta();
     } catch (error) {
       setErrorMessage(error.message);
@@ -176,7 +192,6 @@ const Categoria = () => {
           handleChange={handleDadosChange}
         />
         <button onClick={handleCadastro}>Cadastrar</button>
-        <button onClick={handleUpdate}>Editar</button>
       </div>
       <div className="tabelaConsulta">
         <Table
@@ -184,13 +199,11 @@ const Categoria = () => {
             { label: "Codigo", prop: "ID_CATEGORIA" },
             { label: "Nome", prop: "NOME" },
             { label: "Descrição", prop: "DESCRICAO" },
-            { label: "Inativo", prop: "INATIVO" },
           ]}
           dados={fetchData}
           handleDoubleClick={handleSelectProd}
         />
         <div className="bts-table">
-          <button onClick={handleConsulta}>Consultar</button>
           <button className="bt-deletar" onClick={handleDelete}>
             Deletar
           </button>
