@@ -7,7 +7,7 @@ import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 
 const CadastroVendedor = () => {
   const { sendByFetch } = useFetch();
-  const [dados, setDados] = useState({ nome: "", uf: "", cpf: "" });
+  const [dados, setDados] = useState({ nome: "", email: "", telefone: "" });
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [fetchData, setFetchData] = useState([]);
@@ -21,14 +21,8 @@ const CadastroVendedor = () => {
   };
 
   const validateForm = () => {
-    if (!dados.nome || !dados.uf || !dados.cpf) {
+    if (!dados.nome || !dados.email || !dados.telefone) {
       return "Todos os campos são obrigatórios.";
-    }
-    if (dados.uf.length !== 2) {
-      return "UF deve conter 2 letras.";
-    }
-    if (dados.cpf.length !== 11) {
-      return "CPF deve conter exatamente 11 dígitos.";
     }
     return null;
   };
@@ -44,7 +38,11 @@ const CadastroVendedor = () => {
     try {
       const result = await sendByFetch({
         url: "/api/StokFlow/AcessaBD/sp_stokflow_persistencia_vendedor",
-        body: { NOME: dados.nome, UF: dados.uf.toUpperCase(), CPF: dados.cpf },
+        body: {
+          NOME: dados.nome,
+          EMAIL: dados.email,
+          TELEFONE: dados.telefone,
+        },
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
       });
@@ -107,18 +105,18 @@ const CadastroVendedor = () => {
           handleChange={handleDadosChange}
         />
         <Input
-          name="uf"
-          labeltext="UF:"
+          name="email"
+          labeltext="Email:"
           type="text"
-          value={dados.uf ?? ""}
-          max={2}
+          value={dados.email ?? ""}
+          max={1000}
           handleChange={handleDadosChange}
         />
         <Input
-          name="cpf"
-          labeltext="CPF:"
+          name="telefone"
+          labeltext="TELEFONE:"
           type="text"
-          value={dados.cpf ?? ""}
+          value={dados.telefone ?? ""}
           max={11}
           handleChange={handleDadosChange}
         />
@@ -128,8 +126,8 @@ const CadastroVendedor = () => {
         <Table
           header={[
             { label: "Nome", prop: "NOME" },
-            { label: "UF", prop: "UF" },
-            { label: "CPF", prop: "CPF" },
+            { label: "Email", prop: "EMAIL" },
+            { label: "Telefone", prop: "TELEFONE" },
           ]}
           dados={fetchData}
         />

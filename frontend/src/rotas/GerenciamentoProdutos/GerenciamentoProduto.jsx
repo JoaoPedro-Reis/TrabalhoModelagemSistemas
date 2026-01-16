@@ -10,7 +10,7 @@ const GerenciamentoProduto = () => {
   const [dados, setDados] = useState({
     idProd: "",
     nome: "",
-    descricao: "",
+    categoria: "",
     quantidade: "",
     valUnitario: "",
     inativo: 0,
@@ -31,7 +31,7 @@ const GerenciamentoProduto = () => {
   const validateForm = () => {
     if (
       !dados.nome ||
-      !dados.descricao ||
+      !dados.categoria ||
       !dados.quantidade ||
       !dados.valUnitario
     ) {
@@ -50,7 +50,7 @@ const GerenciamentoProduto = () => {
     setDados({
       idProd: item.ID_PRODUTO || "",
       nome: item.NOME || "",
-      descricao: item.DESCRICAO || "",
+      categoria: item.CATEGORIA || "",
       quantidade: item.QUANTIDADE || "",
       valUnitario: item.VAL_UNITARIO || "",
       inativo: item.INATIVO ?? 0,
@@ -70,7 +70,7 @@ const GerenciamentoProduto = () => {
         url: "/api/StokFlow/AcessaBD/sp_stokflow_persistencia_produto",
         body: {
           NOME: dados.nome,
-          DESCRICAO: dados.descricao,
+          CATEGORIA: dados.categoria,
           QUANTIDADE: dados.quantidade,
           VAL_UNITARIO: dados.valUnitario,
           INATIVO: dados.inativo,
@@ -151,7 +151,7 @@ const GerenciamentoProduto = () => {
         url: "/api/StokFlow/AcessaBD/sp_stokflow_editar_produto",
         body: {
           ID_PRODUTO: dados.idProd,
-          DESCRICAO: dados.descricao,
+          CATEGORIA: dados.categoria,
           QUANTIDADE: dados.quantidade,
           VAL_UNITARIO: dados.valUnitario,
         },
@@ -186,10 +186,10 @@ const GerenciamentoProduto = () => {
           handleChange={handleDadosChange}
         />
         <Input
-          name="descricao"
-          labeltext="Descrição:"
+          name="categoria"
+          labeltext="Categoria:"
           type="text"
-          value={dados.descricao ?? ""}
+          value={dados.categoria ?? ""}
           handleChange={handleDadosChange}
         />
         <Input
@@ -212,8 +212,9 @@ const GerenciamentoProduto = () => {
       <div className="tabelaConsulta">
         <Table
           header={[
+            { label: "Codigo", prop: "ID_PRODUTO" },
             { label: "Nome", prop: "NOME" },
-            { label: "Descrição", prop: "DESCRICAO" },
+            { label: "Categoria", prop: "CATEGORIA" },
             { label: "Quantidade", prop: "QUANTIDADE" },
             { label: "Valor Unitário", prop: "VAL_UNITARIO" },
           ]}

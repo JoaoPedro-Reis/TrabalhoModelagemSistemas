@@ -1,6 +1,5 @@
 import "./Table.css";
 
-// eslint-disable-next-line react/prop-types
 const Table = ({ header = [], dados = [], handleDoubleClick, titulo }) => {
   return (
     <div className="container">

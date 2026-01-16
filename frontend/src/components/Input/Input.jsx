@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import "./Input.css";
 
 const Input = ({ name, labeltext, type, value, handleChange, max }) => {

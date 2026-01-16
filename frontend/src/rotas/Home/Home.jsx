@@ -51,33 +51,36 @@ const Home = () => {
     }
   };
 
-  return (
-    <body>
-      <div className="container-login">
-        <div className="cadastros">
-          <h1 className="title">Login</h1>
-          <div className="error-message">{errorMsg}</div>
-          <Input
-            name="user"
-            labeltext="Usuario:"
-            type="text"
-            value={dados.user}
-            handleChange={handleDadosChange}
-          />
-          <Input
-            name="password"
-            labeltext="Senha:"
-            type="text"
-            value={dados.password}
-            handleChange={handleDadosChange}
-          />
-          <button onClick={handleLogin} className="bt-login">
-            Entrar
-          </button>
-        </div>
-      </div>
-    </body>
-  );
+return (
+  <div className="container-login">
+    <div className="cadastros">
+      <h1 className="title">Login</h1>
+
+      <div className="error-message">{errorMsg}</div>
+
+      <Input
+        name="user"
+        labeltext="Usuario:"
+        type="text"
+        value={dados.user}
+        handleChange={handleDadosChange}
+      />
+
+      <Input
+        name="password"
+        labeltext="Senha:"
+        type="password"
+        value={dados.password}
+        handleChange={handleDadosChange}
+      />
+
+      <button onClick={handleLogin} className="bt-login">
+        Entrar
+      </button>
+    </div>
+  </div>
+);
+
 };
 
 export default Home;

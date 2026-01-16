@@ -82,7 +82,7 @@ const LancamentoVenda = () => {
     try {
       setFetchData([]);
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_consulta_prova_jp_toda_venda",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_consulta_toda_venda",
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
       });

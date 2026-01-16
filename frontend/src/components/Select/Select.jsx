@@ -1,5 +1,4 @@
 import "./Select.css";
-/* eslint-disable react/prop-types */
 const Select = ({
   name,
   labeltext,

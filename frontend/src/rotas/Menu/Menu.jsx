@@ -9,7 +9,6 @@ const Menu = () => {
   };
 
   return (
-    <body>
       <div className="container">
         <h1 className="title">Menu Principal</h1>
         <div className="button-group">
@@ -42,7 +41,6 @@ const Menu = () => {
           </button>
         </div>
       </div>
-    </body>
   );
 };
 
