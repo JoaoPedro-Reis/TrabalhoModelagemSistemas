@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./Menu.css";
+import logo from "../../assets/StokFlow_logo.png";
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const Menu = () => {
     <div className="menu-container">
       <div className="container">
         <h1 className="title">Menu Principal</h1>
+        <img src={logo} alt="StokFlow Logo" className="menu-logo" />
         <div className="button-group">
           <button onClick={() => handleNavigation("/")} className="bt-route">
             Home
