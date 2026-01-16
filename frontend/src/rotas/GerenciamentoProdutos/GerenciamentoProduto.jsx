@@ -22,10 +22,10 @@ const GerenciamentoProduto = () => {
   const [fetchData, setFetchData] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
-  useEffect(() => {
-    getCategorias();
-    handleConsulta();
-  }, []);
+  // useEffect(() => {
+  //   getCategorias();
+  //   handleConsulta();
+  // }, []);
 
   const handleDadosChange = ({ target }) => {
     const { name, value } = target;

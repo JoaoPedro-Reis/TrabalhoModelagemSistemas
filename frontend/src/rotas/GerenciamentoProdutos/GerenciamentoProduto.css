@@ -1,18 +1,76 @@
-input {
-  padding: 2vh;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.container {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-.bts-table{
+.cadastros {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 24px;
+}
+
+.cadastros h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 20px 0;
+}
+
+.cadastros button {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.cadastros button:last-of-type {
+  margin-bottom: 0;
+}
+
+.tabelaConsulta {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.bts-table {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
 
-.bt-deletar{
-  background-color: red;
+.bt-deletar {
+  background-color: #dc3545;
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
 }
-.bt-deletar:hover{
-  background-color: darkred;
+
+.bt-deletar:hover {
+  background-color: #c82333;
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-top: 16px;
+  border: 1px solid #f5c6cb;
+  font-size: 14px;
+}
+
+.success-message {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-top: 16px;
+  border: 1px solid #c3e6cb;
+  font-size: 14px;
 }
   

@@ -1,4 +1,36 @@
-select{
-    height: 40px;
-    border-radius: 5px;
+.select-wrapper {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.select-wrapper label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+select {
+  padding: 10px 12px;
+  font-size: 14px;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: #fafbfc;
+  color: #333;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: #5d5fef;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(93, 95, 239, 0.1);
+}
+
+select:disabled {
+  background-color: #f5f5f5;
+  color: #999;
+  cursor: not-allowed;
 }
