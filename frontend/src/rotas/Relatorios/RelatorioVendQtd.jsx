@@ -13,7 +13,7 @@ const RelatorioVendQtd = () => {
     try {
       setFetchData([]);
       const result = await sendByFetch({
-        url: "/api/ProvaRefatora/PersisteTB/sp_consulta_prova_jp_relatorio_vendedor_qtd",
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_consulta_relatorio_vendedor_qtd",
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
       });
