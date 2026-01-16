@@ -8,6 +8,7 @@ import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 const LancamentoVenda = () => {
   const { sendByFetch } = useFetch();
   const [dados, setDados] = useState({
+    idVenda: "",
     produto: "",
     qtd: "",
     vendedor: "",
@@ -19,8 +20,6 @@ const LancamentoVenda = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [fetchData, setFetchData] = useState([]);
-
-  const buttonRef = useRef();
 
   const handleDadosChange = ({ target }) => {
     const { name, value } = target;
@@ -95,6 +94,7 @@ const LancamentoVenda = () => {
       } else {
         setSuccessMessage("Consulta realizada com sucesso.");
       }
+      console.log("Dados da venda:", linhas);
       setFetchData(linhas);
     } catch (error) {
       setErrorMessage(error.message);
@@ -104,6 +104,7 @@ const LancamentoVenda = () => {
   useEffect(() => {
     getProduto();
     getVendedor();
+    handleConsultaBt();
   }, []);
 
   const handleCadastroBt = async () => {
@@ -127,13 +128,68 @@ const LancamentoVenda = () => {
       });
       setSuccessMessage("Cadastro realizado com sucesso!");
       console.log(result);
-      setDados({});
-      buttonRef.current.click();
+      setDados({
+        idVenda: "",
+        produto: "",
+        qtd: "",
+        vendedor: "",
+      });
+      await handleConsultaBt();
     } catch (error) {
       setErrorMessage(error.message);
     }
   };
-  console.log(dados);
+
+  const handleSelectVenda = (item) => {
+    console.log("Item selecionado:", item);
+
+    // Encontrar o ID do produto pelo nome
+    const produtoEncontrado = options.produtos.find(
+      (p) => p.NOME === item.NomeProduto
+    );
+    const idProduto = produtoEncontrado ? produtoEncontrado.ID_PRODUTO : "";
+
+    // Encontrar o ID do vendedor pelo nome
+    const vendedorEncontrado = options.vendedores.find(
+      (v) => v.NOME === item.NomeVendedor
+    );
+    const idVendedor = vendedorEncontrado ? vendedorEncontrado.ID_VENDEDOR : "";
+
+    setDados({
+      idVenda: item.IdVenda || "",
+      produto: idProduto || "",
+      qtd: item.QuantidadeVenda || "",
+      vendedor: idVendedor || "",
+    });
+  };
+
+  const handleDelete = async () => {
+    setErrorMessage("");
+    setSuccessMessage("");
+    if (!dados.idVenda) {
+      setErrorMessage("Selecione uma venda para deletar!");
+      return;
+    }
+    try {
+      const result = await sendByFetch({
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_deletar_venda",
+        body: { ID_VENDA: dados.idVenda },
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+        verb: "POST",
+      });
+      setSuccessMessage("Deleção realizada com sucesso!");
+      console.log(result);
+      setDados({
+        idVenda: "",
+        produto: "",
+        qtd: "",
+        vendedor: "",
+      });
+      await handleConsultaBt();
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
 
   return (
     <div className="container">
@@ -180,10 +236,13 @@ const LancamentoVenda = () => {
             { label: "Data", prop: "DataVenda" },
           ]}
           dados={fetchData}
+          handleDoubleClick={handleSelectVenda}
         />
-        <button ref={buttonRef} onClick={handleConsultaBt}>
-          Consultar
-        </button>
+        <div className="bts-table">
+          <button className="bt-deletar" onClick={handleDelete}>
+            Deletar
+          </button>
+        </div>
         {errorMessage && <div className="error-message">{errorMessage}</div>}
         {successMessage && (
           <div className="success-message">{successMessage}</div>

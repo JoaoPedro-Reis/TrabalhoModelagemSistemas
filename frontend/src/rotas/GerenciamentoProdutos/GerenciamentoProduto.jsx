@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from "../../components/useFetch";
 import "./GerenciamentoProduto.css";
 import Table from "../../components/Table/Table";
 import Input from "../../components/Input/Input";
+import Select from "../../components/Select/Select";
 import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 
 const GerenciamentoProduto = () => {
@@ -19,6 +20,12 @@ const GerenciamentoProduto = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [fetchData, setFetchData] = useState([]);
+  const [categorias, setCategorias] = useState([]);
+
+  useEffect(() => {
+    getCategorias();
+    handleConsulta();
+  }, []);
 
   const handleDadosChange = ({ target }) => {
     const { name, value } = target;
@@ -26,6 +33,28 @@ const GerenciamentoProduto = () => {
       ...prevState,
       [name]: value,
     }));
+  };
+
+  const getCategorias = async () => {
+    try {
+      const result = await sendByFetch({
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_consulta_categoria",
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+        verb: "POST",
+      });
+      let linhas = result.Linhas?.Linha || [];
+      if (!Array.isArray(linhas)) {
+        linhas = [linhas];
+      }
+      setCategorias(linhas);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+
+  const getNomeCategoria = (idCategoria) => {
+    const categoria = categorias.find((cat) => cat.ID_CATEGORIA == idCategoria);
+    return categoria ? categoria.NOME : idCategoria;
   };
 
   const validateForm = () => {
@@ -78,13 +107,16 @@ const GerenciamentoProduto = () => {
         authorization: "Bearer " + localStorage.getItem("jwt"),
         verb: "POST",
       });
-      if (result.Resposta.Status == 500) {
-        setErrorMessage("Não é possível cadastrar produtos com o mesmo nome");
-        return;
-      }
       setSuccessMessage("Cadastro realizado com sucesso!");
       console.log(result);
-      setDados({});
+      setDados({
+        idProd: "",
+        nome: "",
+        categoria: "",
+        quantidade: "",
+        valUnitario: "",
+        inativo: 0,
+      });
       await handleConsulta();
     } catch (error) {
       setErrorMessage(error.message);
@@ -105,12 +137,19 @@ const GerenciamentoProduto = () => {
       if (!Array.isArray(linhas)) {
         linhas = [linhas];
       }
+
+      // Mapear o nome da categoria para cada produto
+      const linhasComCategoria = linhas.map((produto) => ({
+        ...produto,
+        NOME_CATEGORIA: getNomeCategoria(produto.ID_CATEGORIA),
+      }));
+
       if (linhas.length === 0) {
         setErrorMessage("Nenhum registro encontrado.");
       } else {
         setSuccessMessage("Consulta realizada com sucesso.");
       }
-      setFetchData(linhas);
+      setFetchData(linhasComCategoria);
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -132,7 +171,14 @@ const GerenciamentoProduto = () => {
       });
       setSuccessMessage("Deleção realizada com sucesso!");
       console.log(result);
-      setDados({});
+      setDados({
+        idProd: "",
+        nome: "",
+        categoria: "",
+        quantidade: "",
+        valUnitario: "",
+        inativo: 0,
+      });
       await handleConsulta();
     } catch (error) {
       setErrorMessage(error.message);
@@ -160,7 +206,14 @@ const GerenciamentoProduto = () => {
       });
       setSuccessMessage("Edição realizada com sucesso!");
       console.log(result);
-      setDados({});
+      setDados({
+        idProd: "",
+        nome: "",
+        categoria: "",
+        quantidade: "",
+        valUnitario: "",
+        inativo: 0,
+      });
       await handleConsulta();
     } catch (error) {
       setErrorMessage(error.message);
@@ -185,12 +238,13 @@ const GerenciamentoProduto = () => {
           value={dados.nome ?? ""}
           handleChange={handleDadosChange}
         />
-        <Input
+        <Select
           name="categoria"
           labeltext="Categoria:"
-          type="text"
           value={dados.categoria ?? ""}
           handleChange={handleDadosChange}
+          opcoes={categorias}
+          itemValue="ID_CATEGORIA"
         />
         <Input
           name="quantidade"
@@ -214,7 +268,7 @@ const GerenciamentoProduto = () => {
           header={[
             { label: "Codigo", prop: "ID_PRODUTO" },
             { label: "Nome", prop: "NOME" },
-            { label: "Categoria", prop: "CATEGORIA" },
+            { label: "Categoria", prop: "NOME_CATEGORIA" },
             { label: "Quantidade", prop: "QUANTIDADE" },
             { label: "Valor Unitário", prop: "VAL_UNITARIO" },
           ]}
@@ -222,7 +276,6 @@ const GerenciamentoProduto = () => {
           handleDoubleClick={handleSelectProd}
         />
         <div className="bts-table">
-          <button onClick={handleConsulta}>Consultar</button>
           <button className="bt-deletar" onClick={handleDelete}>
             Deletar
           </button>

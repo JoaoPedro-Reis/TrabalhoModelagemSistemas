@@ -6,7 +6,6 @@ import GerenciamentoProduto from "./GerenciamentoProdutos/GerenciamentoProduto";
 import Categoria from "./GerenciamentoCategoria/Categoria";
 import LancamentoVenda from "./LancamentoVenda/LancamentoVenda";
 import RelatoriosGerenciais from "./Relatorios/RelatoriosGerenciais";
-import RelatorioVendUf from "./Relatorios/RelatorioVendUf";
 import RelatorioAnalitico from "./Relatorios/RelatorioAnalitico";
 import RelatorioVendQtd from "./Relatorios/RelatorioVendQtd";
 import RelatorioVendValor from "./Relatorios/RelatorioVendValor";
@@ -20,7 +19,6 @@ const Rotas = () => {
     { path: "/gerenciamento-categoria", element: <Categoria /> },
     { path: "/lancamento-venda", element: <LancamentoVenda /> },
     { path: "/relatorios-gerenciais", element: <RelatoriosGerenciais /> },
-    { path: "/relatorio-vendedores-por-uf", element: <RelatorioVendUf /> },
     { path: "/relatorio-analitico-venda", element: <RelatorioAnalitico /> },
     { path: "/relatorios-vendedor-por-qtd", element: <RelatorioVendQtd /> },
     {

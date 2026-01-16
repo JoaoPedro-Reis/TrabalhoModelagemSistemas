@@ -19,12 +19,6 @@ const RelatoriosGerenciais = () => {
       <h1 className="title">Visualize seus relatórios</h1>
       <div className="button-group">
         <button
-          onClick={() => handleNavigation("/relatorio-vendedores-por-UF")}
-          className="bt-route-relatory"
-        >
-          Quantidade de Vendedores por UF
-        </button>
-        <button
           onClick={() => handleNavigation("/relatorio-analitico-venda")}
           className="bt-route-relatory"
         >

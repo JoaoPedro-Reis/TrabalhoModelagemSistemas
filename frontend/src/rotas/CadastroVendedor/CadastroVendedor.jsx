@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./CadastroVendedor.css";
 import useFetch from "../../components/useFetch";
 import Table from "../../components/Table/Table";
@@ -7,10 +7,19 @@ import BreadCrumb from "../../components/BreadCrumb/BreadCrumb";
 
 const CadastroVendedor = () => {
   const { sendByFetch } = useFetch();
-  const [dados, setDados] = useState({ nome: "", email: "", telefone: "" });
+  const [dados, setDados] = useState({
+    idVendedor: "",
+    nome: "",
+    email: "",
+    telefone: "",
+  });
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [fetchData, setFetchData] = useState([]);
+
+  useEffect(() => {
+    handleConsulta();
+  }, []);
 
   const handleDadosChange = ({ target }) => {
     const { name, value } = target;
@@ -52,7 +61,7 @@ const CadastroVendedor = () => {
       }
       setSuccessMessage("Cadastro realizado com sucesso!");
       console.log(result);
-      setDados({});
+      setDados({ idVendedor: "", nome: "", email: "", telefone: "" });
       await handleConsulta();
     } catch (error) {
       setErrorMessage("Erro na operação");
@@ -86,6 +95,38 @@ const CadastroVendedor = () => {
     }
   };
 
+  const handleSelectVendedor = (item) => {
+    setDados({
+      idVendedor: item.ID_VENDEDOR || "",
+      nome: item.NOME || "",
+      email: item.EMAIL || "",
+      telefone: item.TELEFONE || "",
+    });
+  };
+
+  const handleDelete = async () => {
+    setErrorMessage("");
+    setSuccessMessage("");
+    if (!dados.idVendedor) {
+      setErrorMessage("Selecione um vendedor para deletar!");
+      return;
+    }
+    try {
+      const result = await sendByFetch({
+        url: "/api/StokFlow/AcessaBD/sp_stokflow_deletar_vendedor",
+        body: { ID_VENDEDOR: dados.idVendedor },
+        authorization: "Bearer " + localStorage.getItem("jwt"),
+        verb: "POST",
+      });
+      setSuccessMessage("Deleção realizada com sucesso!");
+      console.log(result);
+      setDados({ idVendedor: "", nome: "", email: "", telefone: "" });
+      await handleConsulta();
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+
   return (
     <div className="container">
       <BreadCrumb
@@ -101,7 +142,6 @@ const CadastroVendedor = () => {
           labeltext="Nome:"
           type="text"
           value={dados.nome ?? ""}
-          max={1000}
           handleChange={handleDadosChange}
         />
         <Input
@@ -109,15 +149,13 @@ const CadastroVendedor = () => {
           labeltext="Email:"
           type="text"
           value={dados.email ?? ""}
-          max={1000}
           handleChange={handleDadosChange}
         />
         <Input
           name="telefone"
-          labeltext="TELEFONE:"
+          labeltext="Telefone:"
           type="text"
           value={dados.telefone ?? ""}
-          max={11}
           handleChange={handleDadosChange}
         />
         <button onClick={handleCadastro}>Cadastrar</button>
@@ -130,8 +168,13 @@ const CadastroVendedor = () => {
             { label: "Telefone", prop: "TELEFONE" },
           ]}
           dados={fetchData}
+          handleDoubleClick={handleSelectVendedor}
         />
-        <button onClick={handleConsulta}>Consultar</button>
+        <div className="bts-table">
+          <button className="bt-deletar" onClick={handleDelete}>
+            Deletar
+          </button>
+        </div>
         {errorMessage && <div className="error-message">{errorMessage}</div>}
         {successMessage && (
           <div className="success-message">{successMessage}</div>
