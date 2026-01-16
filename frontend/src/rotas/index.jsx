@@ -12,7 +12,7 @@ import RelatorioVendValor from "./Relatorios/RelatorioVendValor";
 
 const Rotas = () => {
   const routes = [
-    { path: "/", element: <Home /> },
+    { path: "/", element: <Menu /> },
     { path: "/menu", element: <Menu /> },
     { path: "/cadastro-vendedor", element: <CadastroVendedor /> },
     { path: "/gerenciamento-produtos", element: <GerenciamentoProduto /> },
