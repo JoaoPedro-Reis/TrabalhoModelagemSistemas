@@ -17,9 +17,9 @@ const CadastroVendedor = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const [fetchData, setFetchData] = useState([]);
 
-  // useEffect(() => {
-  //   handleConsulta();
-  // }, []);
+  useEffect(() => {
+    handleConsulta();
+  }, []);
 
   const handleDadosChange = ({ target }) => {
     const { name, value } = target;

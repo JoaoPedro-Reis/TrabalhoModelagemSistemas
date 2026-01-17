@@ -22,10 +22,10 @@ const GerenciamentoProduto = () => {
   const [fetchData, setFetchData] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
-  // useEffect(() => {
-  //   getCategorias();
-  //   handleConsulta();
-  // }, []);
+  useEffect(() => {
+    getCategorias();
+    handleConsulta();
+  }, []);
 
   const handleDadosChange = ({ target }) => {
     const { name, value } = target;
@@ -76,10 +76,11 @@ const GerenciamentoProduto = () => {
   };
 
   const handleSelectProd = (item) => {
+    // item.CATEGORIA pode ser ID_CATEGORIA da tabela
     setDados({
       idProd: item.ID_PRODUTO || "",
       nome: item.NOME || "",
-      categoria: item.CATEGORIA || "",
+      categoria: item.ID_CATEGORIA || item.CATEGORIA || "",
       quantidade: item.QUANTIDADE || "",
       valUnitario: item.VAL_UNITARIO || "",
       inativo: item.INATIVO ?? 0,

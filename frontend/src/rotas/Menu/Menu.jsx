@@ -11,13 +11,19 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
+      <div className="menu-exit">
+        <button
+          onClick={() => handleNavigation("/")}
+          className="bt-exit"
+          title="Sair"
+        >
+          ← Sair
+        </button>
+      </div>
       <div className="container">
         <h1 className="title">Menu Principal</h1>
         <img src={logo} alt="StokFlow Logo" className="menu-logo" />
         <div className="button-group">
-          <button onClick={() => handleNavigation("/")} className="bt-route">
-            Home
-          </button>
           <button
             onClick={() => handleNavigation("/cadastro-vendedor")}
             className="bt-route"
